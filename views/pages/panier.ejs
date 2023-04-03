@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website</title>
+    <title>Panier</title>
     <link rel="stylesheet" href="stylesheets/bootstrap.css">
     <link rel="icon" href="images/DAGALINK.png">
 </head>
@@ -37,45 +36,49 @@
     </section>
 </header>
 
-<main class="bg-white p-auto mx-xxl-20 mx-xl-15 mx-lg-10 mx-md-5 mx-3 flex-column d-flex flex-wrap border-radius">
+<main class="bg-white mx-xxl-20 mx-xl-15 mx-lg-10 mx-md-5 mx-3 flex-column d-flex flex-wrap border-radius">
     <section class="text-center py-4">
-        <h1 class="h1">Store</h1>
+        <h1 class="h1">Panier</h1>
     </section>
-    <section class="mx-xxl-10 mx-xl-7.5 mx-lg-6 mx-md-5 mx-4 px-0">
-        <p class="lead text-center">Quel type d'utilisation comptez vous faire ?</p>
-    </section>
-
-        <section class="flex-md-row my-5">
+    <section class="flex-md-row my-5 border">
+        <% if (orders.length > 0) { %>
+        <ul class="px-3 flex-wrap d-flex justify-md-content-between justify-content-center flex-column">
+            <% for (let i = 0; i < orders.length; i++) { %>
+            <li class="d-flex flex-row align-items-center justify-content-center px-2 py-2 mt-2 mx-2">
+                <img class="" src="images/<%=orders[i].item_name%>_panier.jpg">
+                <h2 class="mx-5 h4">PC pour <%= orders[i].item_name %></h2>
+                <p class="h5"><%= orders[i].price %>€</p>
+            </li>
+            <% } %>
+        </ul>
+        <% } else { %>
             <ul class="px-3 flex-wrap d-flex justify-md-content-between justify-content-center flex-md-row flex-column">
-                <% for (let i = 0; i < products.length; i++) { %>
-                <li class="d-flex flex-column btn btn-light align-items-center px-2 py-2 mt-2 mx-2">
-                    <img class="w-25" src="images/<%=products[i].item_name%>.jpg">
-                    <h2>PC pour <%= products[i].item_name %></h2>
-                    <p><%= products[i].price %>€</p>
-                    <form method="post" action="/simulateur">
-                        <input type="hidden" name="item_name" value="<%=products[i].item_name%>">
-                        <input type="hidden" name="price" value="<%=products[i].price%>">
-                        <button type="submit">Acheter</button>
-                    </form>
+                <li class="d-flex flex-column align-items-center px-2 py-2 mt-2 mx-2">
+                    <p class="h3">Votre panier est vide!</p>
                 </li>
-                <% } %>
             </ul>
-        </section>
-
-
-
-    <section class="flex-md-row flex-warps my-5 justify-content-center">
-
+            <%}%>
+            <p class="px-3 flex-wrap d-flex justify-md-content-between justify-content-center flex-md-row flex-column">Total: <%= orders.reduce((acc, order) => acc + parseFloat(order.price), 0) %>€</p>
+    </section>
+    <section class="text-end d-flex justify-content-center align-items-center mx-4">
+        <form method="post" action="/clear-orders">
+            <button class="btn btn-dark mx-2 my-3" type="submit">clear</button>
+        </form>
+        <form action="/process-order" method="post">
+            <button type="submit" class="btn btn-success mx-2 my-3">Commander</button>
+        </form>
 
     </section>
+
+
 </main>
 
 <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top bg-dark">
     <article class="my-3">
-        <p class="text-secondary my-auto">© 2023 Copyright: DAGA.fr</p>
+        <p class="text-secondary my-auto">© 2023 DAGA.fr</p>
     </article>
 </footer>
-<script src="js/bootstrap.js"></script>
+<script src="public/javascripts/script.js"></script>
 </body>
 
 </html>
