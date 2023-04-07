@@ -22,7 +22,7 @@
 
     <ul class="nav justify-content-center fs-5 d-flex">
         <li><a href="/" class="nav-link px-3 link-dark">A propos</a></li>
-        <li><a href="/simulateur" class="nav-link px-3 link-dark">Store</a></li>
+        <li><a href="/store" class="nav-link px-3 link-dark">Store</a></li>
     </ul>
     <section class="text-end d-flex justify-content-center align-items-center mx-4">
         <ul class="nav justify-content-center fs-5 d-flex">
@@ -39,25 +39,31 @@
 
 <main class="bg-white mx-xxl-20 mx-xl-15 mx-lg-10 mx-md-5 mx-3 flex-column d-flex flex-wrap align-items-center border-radius">
     <section class="flex-column flex flex-wrap mx-md-5 mx-2 my-4">
+        <!-- titre -->
         <h1 class="d-flex h1 py-2 mb-4">Contact</h1>
+        <!-- formulaire -->
         <form action="post" class="d-flex flex-column">
             <section class="nav d-flex mb-3">
                 <label>Mail :
+                    <!-- entrée de texte -->
                     <input class="form-control mt-2 text-box" type="text">
                 </label>
             </section>
             <section class="d-flex my-3">
                 <label>Prenom NOM :
+                    <!-- entrée de texte -->
                     <input class="form-control mt-2 text-box" type="text">
                 </label>
             </section>
             <section class="d-flex my-3">
                 <label>Message :
+                    <!-- entrée de texte ayant une plus grand taille -->
                     <textarea class="form-control mt-2 text-mail" type="text"></textarea>
                 </label>
             </section>
             <section class="d-flex mt-4">
                 <aside>
+                    <!-- bouton envoyer message renvoyant vers la page index.ejs -->
                     <a href="/">
                         <button class="btn btn-secondary my-3">Envoyer le message</button>
                     </a>

@@ -21,7 +21,7 @@
 
     <ul class="nav justify-content-center fs-5 d-flex">
         <li><a href="/" class="nav-link px-3 link-dark">A propos</a></li>
-        <li><a href="/simulateur" class="nav-link px-3 link-dark">Store</a></li>
+        <li><a href="/store" class="nav-link px-3 link-dark">Store</a></li>
     </ul>
     <section class="text-end d-flex justify-content-center align-items-center mx-4">
         <ul class="nav justify-content-center fs-5 d-flex">
@@ -38,19 +38,27 @@
 
 <main class="bg-white mx-xxl-20 mx-xl-15 mx-lg-10 mx-md-5 mx-3 flex-column d-flex flex-wrap border-radius">
     <section class="text-center py-4">
+        <!-- titre -->
         <h1 class="h1">Panier</h1>
     </section>
     <section class="flex-md-row my-5 border">
+        <!-- si la table orders de la base SQL n'est pas vide lors la page exécutera la ligne 46 a 55 -->
         <% if (orders.length > 0) { %>
         <ul class="px-3 flex-wrap d-flex justify-md-content-between justify-content-center flex-column">
+            <!-- boucle : création de la variable i égal a 0; tant que la valeur de la variable i est plus petit que le nombre de ligne de la table orders de la base sql alors répéter la ligne 50 a 54; ajouter 1 à la variable i à chaque boucle -->
             <% for (let i = 0; i < orders.length; i++) { %>
+
             <li class="d-flex flex-row align-items-center justify-content-center px-2 py-2 mt-2 mx-2">
+                <!-- affichage d'une image se nommant "'nom_de_l'element_item_name_de_la_table_sql_orders'_panier.jpg" -->
                 <img class="" src="images/<%=orders[i].item_name%>_panier.jpg">
+                <!-- affiche "PC pour 'nom_de_l'element_item_name_de_la_table_sql_orders'" -->
                 <h2 class="mx-5 h4">PC pour <%= orders[i].item_name %></h2>
+                <!-- affiche "'nom_de_l'element_price_de_la_table_sql_orders'€" -->
                 <p class="h5"><%= orders[i].price %>€</p>
             </li>
             <% } %>
         </ul>
+            <!-- sinon executer la ligne 63 a 66 qui affichera "Votre panier est vide!" -->
         <% } else { %>
             <ul class="px-3 flex-wrap d-flex justify-md-content-between justify-content-center flex-md-row flex-column">
                 <li class="d-flex flex-column align-items-center px-2 py-2 mt-2 mx-2">
@@ -60,10 +68,13 @@
             <%}%>
             <p class="px-3 flex-wrap d-flex justify-md-content-between justify-content-center flex-md-row flex-column">Total: <%= orders.reduce((acc, order) => acc + parseFloat(order.price), 0) %>€</p>
     </section>
+    <!-- Section contenant 2 boutons -->
     <section class="text-end d-flex justify-content-center align-items-center mx-4">
+        <!-- Bouton executant l'action clear-orders dans index.js -->
         <form method="post" action="/clear-orders">
             <button class="btn btn-dark mx-2 my-3" type="submit">clear</button>
         </form>
+        <!-- Bouton executant l'action process-order dans index.js -->
         <form action="/process-order" method="post">
             <button type="submit" class="btn btn-success mx-2 my-3">Commander</button>
         </form>

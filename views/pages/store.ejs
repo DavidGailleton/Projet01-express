@@ -22,7 +22,7 @@
 
     <ul class="nav justify-content-center fs-5 d-flex">
         <li><a href="/" class="nav-link px-3 link-dark">A propos</a></li>
-        <li><a href="/simulateur" class="nav-link px-3 link-dark">Store</a></li>
+        <li><a href="/store" class="nav-link px-3 link-dark">Store</a></li>
     </ul>
     <section class="text-end d-flex justify-content-center align-items-center mx-4">
         <ul class="nav justify-content-center fs-5 d-flex">
@@ -52,7 +52,7 @@
                     <img class="w-25" src="images/<%=products[i].item_name%>.jpg">
                     <h2>PC pour <%= products[i].item_name %></h2>
                     <p><%= products[i].price %>€</p>
-                    <form method="post" action="/simulateur">
+                    <form method="post" action="/store">
                         <input type="hidden" name="item_name" value="<%=products[i].item_name%>">
                         <input type="hidden" name="price" value="<%=products[i].price%>">
                         <button type="submit">Acheter</button>
